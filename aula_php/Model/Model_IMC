@@ -1,8 +1,19 @@
 <?php
-    
-class ModeloImc{
-    
+    require "../Config/config.php";
 
+class ModeloImc{
+    public function save($altura, $peso){
+        global $con;
+
+        $sql = "INSERT INTO imc (peso, altura) VALUES ('$peso', '$altura')";
+
+        if ($con->query($sql) === TRUE) {
+            $data = array('status' => true);
+        } else {
+            $data = array('status' => false, 'erro' => $con->error);
+        }
+        return $data;
+    }
 }
 
 ?>

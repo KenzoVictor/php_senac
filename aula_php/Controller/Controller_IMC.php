@@ -9,10 +9,14 @@ class Imc{
     public function calcIMC(){
         
         $this->imc = $this->peso / ($this->altura ** 2);
-        return round($this->imc,2);
 
+        $isSave = $this->SalvarImc();
 
-
+        if($isSave['status']){
+            return round($this->imc,2);
+        } else {
+            return $isSave['erro'];
+        }
     }
 
     private function SalvarImc(){
